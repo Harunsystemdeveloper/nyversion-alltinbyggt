@@ -1,0 +1,64 @@
+/* ===== GLOBAL STYLE ===== */
+
+body {
+  background: #f7f7f7;
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  background: #222 !important;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar button {
+  color: #fff !important;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar button:hover {
+  opacity: 0.8;
+}
+
+
+/* ===== POSTS LIST ===== */
+.post-card {
+  background: #fffce8;
+  border-left: 8px solid #ffd12b;
+  border-radius: 8px;
+  padding: 12px 18px;
+  transition: 0.2s;
+}
+
+.post-card:hover {
+  transform: scale(1.01);
+  background: #fff8cc;
+}
+
+
+/* ===== FORM WRAPPER ===== */
+.form-wrap {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.07);
+}
+
+
+/* ===== BUTTONS ===== */
+.btn-primary {
+  background-color: #ffba08 !important;
+  border-color: #ffba08 !important;
+  color: #222 !important;
+}
+
+.btn-primary:hover {
+  background-color: #f5b000 !important;
+}
+
