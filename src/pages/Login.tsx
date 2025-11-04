@@ -16,7 +16,7 @@ export default function Login() {
 
     try {
       await login(email, password)
-      nav('/') // Skicka användaren till startsidan efter inloggning
+      nav('/') 
     } catch {
       setError('Fel användarnamn eller lösenord')
     }
@@ -61,7 +61,7 @@ export default function Login() {
 
       <p className="mt-3 text-center">
         Har du inget konto?{' '}
-        <Link to="/register">Registrera dig här</Link> {/* 🆕 Fixad länk */}
+        <Link to="/register">Registrera dig här</Link> {}
       </p>
     </Form>
   )
