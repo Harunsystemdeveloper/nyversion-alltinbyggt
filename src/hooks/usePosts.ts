@@ -5,6 +5,8 @@ export interface Post {
   id?: number
   title: string
   content: string
+  category?: string
+  email?: string
   createdAt?: string
   updatedAt?: string
 }
@@ -20,14 +22,22 @@ export function usePosts() {
     setLoading(false)
   }
 
-  async function add(title: string, content: string) {
-    const post = await apiPost('/posts', { title, content })
+  async function add(title: string, content: string, category?: string, email?: string) {
+    const payload: any = { title, content }
+    if (category) payload.category = category
+    if (email) payload.email = email
+
+    const post = await apiPost('/posts', payload)
     setPosts(prev => [post, ...prev])
   }
 
 
-  async function edit(id: number, title: string, content: string) {
-    const updated = await apiPut(`/posts/${id}`, { title, content })
+  async function edit(id: number, title: string, content: string, category?: string, email?: string) {
+    const payload: any = { title, content }
+    if (category) payload.category = category
+    if (email) payload.email = email
+
+    const updated = await apiPut(`/posts/${id}`, payload)
     setPosts(prev => prev.map(p => (p.id === id ? updated : p)))
   }
 
@@ -40,6 +50,5 @@ export function usePosts() {
     load()
   }, [])
 
- 
   return { posts, loading, add, edit, remove }
 }

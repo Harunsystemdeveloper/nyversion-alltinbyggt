@@ -1,37 +1,68 @@
+import { useState } from 'react'
 import { usePosts } from '../hooks/usePosts'
 import { useAuth } from '../hooks/useAuth'
-import { Button, Card } from 'react-bootstrap'
+import { Button, Card, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
   const { posts } = usePosts()
   const { user } = useAuth()
 
+  const [search, setSearch] = useState("")
+  const [categoryFilter, setCategoryFilter] = useState("")
+
+  const filteredPosts = posts.filter(p =>
+    p.title.toLowerCase().includes(search.toLowerCase()) &&
+    (categoryFilter === "" || p.category === categoryFilter)
+  )
+
   return (
     <div className="page-wrapper">
 
-      {/* ✅ Titel + introtext (från mockup) */}
       <h1 className="home-title">Digital Anslagstavla</h1>
       <p className="home-subtitle">
         Här kan du se inlägg, skapa egna och hålla dig uppdaterad.
       </p>
 
-      {/* ✅ Lista av posts */}
+      <div className="d-flex gap-2 mb-3">
+        <Form.Control
+          placeholder="Sök..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+          style={{ maxWidth: "250px" }}
+        />
+
+        <Form.Select
+          value={categoryFilter}
+          onChange={e => setCategoryFilter(e.target.value)}
+          style={{ maxWidth: "200px" }}
+        >
+          <option value="">Alla kategorier</option>
+          <option value="Sport">Sport</option>
+          <option value="Jobb">Jobb</option>
+          <option value="Evenemang">Evenemang</option>
+          <option value="Övrigt">Övrigt</option>
+        </Form.Select>
+      </div>
+
       <div className="d-grid gap-3">
-        {posts.map(p => (
+        {filteredPosts.map(p => (
           <Card key={p.id} className="post-card">
             <Card.Body>
               <Card.Title>{p.title}</Card.Title>
               <Card.Text>{p.content}</Card.Text>
 
+              <small><b>Kategori:</b> {p.category || "Ingen"}</small><br />
+              <small><b>Kontakt:</b> {p.email || "-"}</small><br />
+
               {user && (
                 <>
-                  {/* @ts-expect-error React Bootstrap typing bug */}
                   <Button
                     as={Link}
                     to={`/edit/${p.id}`}
                     variant="primary"
                     size="sm"
+                    className="mt-2"
                   >
                     Redigera
                   </Button>
@@ -44,6 +75,8 @@ export default function Home() {
     </div>
   )
 }
+
+
 
 
 
