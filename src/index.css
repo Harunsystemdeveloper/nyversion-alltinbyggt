@@ -1,21 +1,22 @@
-/* ===== GLOBAL STYLE ===== */
-
+/* ===== GLOBAL ===== */
 body {
-  background: #f7f7f7;
   font-family: "Inter", sans-serif;
+  background: #0f2535;
   margin: 0;
   padding: 0;
+  color: #fff;
 }
 
 /* ===== NAVBAR ===== */
 .navbar {
-  background: #222 !important;
+  background: #0c1c28 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .navbar .navbar-brand,
 .navbar .nav-link,
 .navbar button {
-  color: #fff !important;
+  color: #ffd54f !important;
   font-weight: 500;
 }
 
@@ -24,41 +25,58 @@ body {
   opacity: 0.8;
 }
 
+/* ===== PAGE WRAPPER ===== */
+.page-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+}
 
-/* ===== POSTS LIST ===== */
+/* ===== HEADING ===== */
+.home-title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffd54f;
+  margin-bottom: 5px;
+}
+
+.home-subtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 25px;
+}
+
+/* ===== POSTS ===== */
 .post-card {
-  background: #fffce8;
-  border-left: 8px solid #ffd12b;
-  border-radius: 8px;
-  padding: 12px 18px;
-  transition: 0.2s;
+  background: #ffe082;
+  border: none;
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 18px;
+  color: #222;
+  transition: 0.15s;
 }
 
 .post-card:hover {
   transform: scale(1.01);
-  background: #fff8cc;
+  background: #ffdf75;
 }
 
-
-/* ===== FORM WRAPPER ===== */
-.form-wrap {
-  max-width: 600px;
-  margin: auto;
-  background: white;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.07);
+.post-card .card-title {
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
-
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .btn-primary {
-  background-color: #ffba08 !important;
-  border-color: #ffba08 !important;
+  background: #ffd54f !important;
+  border-color: #ffd54f !important;
   color: #222 !important;
+  font-weight: 500;
 }
 
 .btn-primary:hover {
-  background-color: #f5b000 !important;
+  background: #f1c644 !important;
 }
+
+
 
