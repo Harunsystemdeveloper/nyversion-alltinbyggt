@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <div className="d-grid gap-3">
       {posts.map(p => (
-        <Card key={p.id}>
+        <Card key={p.id} className="post-card">
           <Card.Body>
             <Card.Title>{p.title}</Card.Title>
             <Card.Text>{p.content}</Card.Text>
