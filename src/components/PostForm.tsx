@@ -1,5 +1,6 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { CATEGORIES } from '../constants/categories'
 
 export default function PostForm({ initial, onSubmit }: any) {
   const [title, setTitle] = useState(initial?.title || "")
@@ -20,7 +21,7 @@ export default function PostForm({ initial, onSubmit }: any) {
         <Form.Control
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Ange titel…"
+          placeholder="Ange titel"
         />
       </Form.Group>
 
@@ -31,7 +32,7 @@ export default function PostForm({ initial, onSubmit }: any) {
           rows={4}
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          placeholder="Skriv ditt meddelande…"
+          placeholder="Skriv ditt meddelande"
         />
       </Form.Group>
 
@@ -41,11 +42,10 @@ export default function PostForm({ initial, onSubmit }: any) {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="">Välj kategori…</option>
-          <option value="Meddelande">Meddelande</option>
-          <option value="Påminnelse">Påminnelse</option>
-          <option value="Event">Event</option>
-          <option value="Info">Info</option>
+          <option value="">Välj kategori</option>
+          {CATEGORIES.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
         </Form.Select>
       </Form.Group>
 
@@ -65,3 +65,4 @@ export default function PostForm({ initial, onSubmit }: any) {
     </Form>
   )
 }
+

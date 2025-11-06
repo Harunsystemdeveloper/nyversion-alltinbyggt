@@ -1,7 +1,8 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { usePosts } from '../hooks/usePosts'
 import { useAuth } from '../hooks/useAuth'
 import { Card, Form } from 'react-bootstrap'
+import { CATEGORIES } from '../constants/categories'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
@@ -38,10 +39,9 @@ export default function Home() {
           style={{ maxWidth: "200px" }}
         >
           <option value="">Alla kategorier</option>
-          <option value="Sport">Sport</option>
-          <option value="Jobb">Jobb</option>
-          <option value="Evenemang">Evenemang</option>
-          <option value="Övrigt">Övrigt</option>
+          {CATEGORIES.map(c => (
+            <option key={c} value={c}>{c}</option>
+          ))}
         </Form.Select>
       </div>
 
