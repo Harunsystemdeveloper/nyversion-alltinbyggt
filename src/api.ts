@@ -17,6 +17,7 @@ export async function apiPost<T>(path: string, body: any) {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
+    credentials: 'include',
   })
   return handle<T>(res)
 }
@@ -27,6 +28,7 @@ export async function apiPut<T>(path: string, body: any) {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
+    credentials: 'include',
   })
   return handle<T>(res)
 }

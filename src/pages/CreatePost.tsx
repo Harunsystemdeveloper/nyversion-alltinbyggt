@@ -6,8 +6,8 @@ export default function CreatePost() {
   const nav = useNavigate()
   const { add } = usePosts()
 
-  async function handleCreate(title: string, content: string) {
-    await add(title, content)
+  async function handleCreate(title: string, content: string, category: string, email: string) {
+    await add(title, content, category, email)
     nav('/')
   }
 

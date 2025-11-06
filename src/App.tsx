@@ -7,6 +7,8 @@ import CreatePost from './pages/CreatePost'
 import EditPost from './pages/EditPost'
 import NotFoundPage from './pages/NotFoundPage'
 import ProtectedRoute from './components/ProtectedRoute'
+import AdminRoute from './components/AdminRoute'
+import Admin from './pages/Admin'
 import { useAuth } from './hooks/useAuth'
 
 export default function App() {
@@ -21,6 +23,9 @@ export default function App() {
             {user ? (
               <>
                 <Nav.Link as={Link} to="/new">Ny post</Nav.Link>
+                {user.role === 'admin' && (
+                  <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
+                )}
                 <Button variant="outline-secondary" onClick={logout}>Logga ut</Button>
               </>
             ) : (
@@ -39,10 +44,12 @@ export default function App() {
             <Route path="/new" element={<CreatePost/>} />
             <Route path="/edit/:id" element={<EditPost />} />
           </Route>
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Container>
     </>
   )
 }
-
