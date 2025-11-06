@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { usePosts } from '../hooks/usePosts'
 import { useAuth } from '../hooks/useAuth'
-import { Button, Card, Form } from 'react-bootstrap'
+import { Card, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
@@ -56,17 +56,12 @@ export default function Home() {
               <small><b>Kontakt:</b> {p.email || "-"}</small><br />
 
               {user && (
-                <>
-                  <Button
-                    as={Link}
-                    to={`/edit/${p.id}`}
-                    variant="primary"
-                    size="sm"
-                    className="mt-2"
-                  >
-                    Redigera
-                  </Button>
-                </>
+                <Link
+                  to={`/edit/${p.id}`}
+                  className="btn btn-primary btn-sm mt-2"
+                >
+                  Redigera
+                </Link>
               )}
             </Card.Body>
           </Card>

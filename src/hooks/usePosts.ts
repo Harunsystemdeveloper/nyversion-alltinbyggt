@@ -17,7 +17,7 @@ export function usePosts() {
 
   async function load() {
     setLoading(true)
-    const data = await apiGet('/posts')
+    const data = await apiGet<Post[]>('/posts')
     setPosts(data)
     setLoading(false)
   }
@@ -27,7 +27,7 @@ export function usePosts() {
     if (category) payload.category = category
     if (email) payload.email = email
 
-    const post = await apiPost('/posts', payload)
+    const post = await apiPost<Post>('/posts', payload)
     setPosts(prev => [post, ...prev])
   }
 
@@ -37,7 +37,7 @@ export function usePosts() {
     if (category) payload.category = category
     if (email) payload.email = email
 
-    const updated = await apiPut(`/posts/${id}`, payload)
+    const updated = await apiPut<Post>(`/posts/${id}`, payload)
     setPosts(prev => prev.map(p => (p.id === id ? updated : p)))
   }
 

@@ -33,14 +33,12 @@ export default function Admin() {
                     </div>
                     <div className="d-flex gap-2 mt-2">
                       {p.id != null && (
-                        <Button
-                          as={Link}
+                        <Link
                           to={`/edit/${p.id}`}
-                          size="sm"
-                          variant="primary"
+                          className="btn btn-primary btn-sm"
                         >
                           Redigera
-                        </Button>
+                        </Link>
                       )}
                       {p.id != null && (
                         <Button
@@ -106,4 +104,3 @@ export default function Admin() {
     </div>
   )
 }
-
