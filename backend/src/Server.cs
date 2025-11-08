@@ -7,6 +7,8 @@ public static class Server
         App = builder.Build();
         Middleware();
         DebugLog.Start();
+        // Ensure required defaults (like ACL rules) exist before ACL starts
+        DbInit.EnsureAclDefaults();
         Acl.Start();
         ErrorHandler.Start();
         FileServer.Start();

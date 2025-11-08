@@ -6,7 +6,7 @@ import { CATEGORIES } from '../constants/categories'
 import { Link } from 'react-router-dom'
 
 export default function Home() {
-  const { posts } = usePosts()
+  const { posts, remove } = usePosts()
   const { user } = useAuth()
 
   const [search, setSearch] = useState("")
@@ -62,6 +62,14 @@ export default function Home() {
                 >
                   Redigera
                 </Link>
+              )}
+              {user && (user.role === 'admin' || user.email === p.email) && p.id != null && (
+                <button
+                  className="btn btn-danger btn-sm mt-2 ms-2"
+                  onClick={() => remove(p.id!)}
+                >
+                  Ta bort
+                </button>
               )}
             </Card.Body>
           </Card>

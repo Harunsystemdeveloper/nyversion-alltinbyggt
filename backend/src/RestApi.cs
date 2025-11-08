@@ -61,11 +61,31 @@ public static class RestApi
         App.MapDelete("/api/{table}/{id}", (
              HttpContext context, string table, string id
         ) =>
-            RestResult.Parse(context, SQLQueryOne(
+        {
+            var parsed = ReqBodyParse(table, Obj(new { id }));
+            var body = parsed.body;
+
+            // Ownership check for deleting posts: users can only delete their own
+            var user = Session.Get(context, "user");
+            if (table == "posts" && user != null && user.role == "user")
+            {
+                var row = SQLQueryOne(
+                    $"SELECT email FROM {table} WHERE id = $id",
+                    body,
+                    context
+                );
+                if (row == null || !row.HasKey("email") || (string)row.email != (string)user.email)
+                {
+                    return RestResult.Parse(context, new { error = "Not allowed to delete this post." });
+                }
+            }
+
+            return RestResult.Parse(context, SQLQueryOne(
                 $"DELETE FROM {table} WHERE id = $id",
-                ReqBodyParse(table, Obj(new { id })).body,
+                body,
                 context
-            ))
+            ));
+        }
         );
     }
 }
