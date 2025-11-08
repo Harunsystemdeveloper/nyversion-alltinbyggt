@@ -19,19 +19,22 @@ export default function App() {
       <Navbar bg="light" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/">Digital Anslagstavla</Navbar.Brand>
-          <Nav className="ms-auto">
-            {user ? (
-              <>
-                <Nav.Link as={Link} to="/new">Ny post</Nav.Link>
-                {user.role === 'admin' && (
-                  <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
-                )}
-                <Button variant="outline-secondary" onClick={logout}>Logga ut</Button>
-              </>
-            ) : (
-              <Nav.Link as={Link} to="/login">Logga in</Nav.Link>
-            )}
-          </Nav>
+          <Navbar.Toggle aria-controls="main-nav" />
+          <Navbar.Collapse id="main-nav" className="justify-content-end">
+            <Nav className="ms-auto">
+              {user ? (
+                <>
+                  <Nav.Link as={Link} to="/new">Ny post</Nav.Link>
+                  {user.role === 'admin' && (
+                    <Nav.Link as={Link} to="/admin">Admin</Nav.Link>
+                  )}
+                  <Button variant="outline-secondary" onClick={logout}>Logga ut</Button>
+                </>
+              ) : (
+                <Nav.Link as={Link} to="/login">Logga in</Nav.Link>
+              )}
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 
